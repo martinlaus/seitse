@@ -29,7 +29,9 @@ class SevenZip:
         try:
             if archive.endswith('.7z'):
                 if sys.platform == 'darwin' or sys.platform == 'linux':
-                extract_seven_zip = ['7za', 'x', archive]
+                    extract_seven_zip = ['7za', 'x', archive]
+                if sys.platform == 'win32':
+                    extract_seven_zip = []
                 call(extract_seven_zip)
         except:
             print('Unable to extract archive')
