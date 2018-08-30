@@ -1,6 +1,7 @@
 import os
 import sys
 import shutil
+import platform
 from subprocess import call
 
 
@@ -12,7 +13,7 @@ class SevenZip:
             print(file)
             archive_command = ['7za', 'a', '-t7z', name, file]
             call(archive_command)
-# ' '.join([str(x) for x in files])
+
 
     def extract_archive(self, archive, destination=None, default_dir='binary'):
         """Extract archive (extracts 7z archives)
@@ -28,12 +29,13 @@ class SevenZip:
 
         try:
             if archive.endswith('.7z'):
-                if sys.platform == 'darwin' or sys.platform == 'linux':
+                if sys.platform == 'darwin':
                     extract_seven_zip = ['7za', 'x', archive]
-                    print('Mac or Linux detected')
+                if 'linux' in sys.platform:
+                    extract_seven_zip = ['7za', 'x', archive]
                 if sys.platform == 'win32':
                     extract_seven_zip = ['7z', 'x', archive]
-                    print('Windows detected')
+                print('Platform: {0} detected'.format(sys.platform))
                 call(extract_seven_zip)
         except:
             print('Unable to extract archive')

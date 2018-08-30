@@ -1,6 +1,7 @@
 import os
 import sys
 import glob
+import platform
 from subprocess import call
 from seven_zip import SevenZip
 
@@ -15,4 +16,5 @@ files = glob.glob('*.txt')
 print(files)
 seven = SevenZip()
 # seven.create_archive_with(file_name, files)
-seven.extract_archive(file_name)
+destination = seven.extract_archive(file_name)
+print('Files Extracted to: {0}'.format(destination))
