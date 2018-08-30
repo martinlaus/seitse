@@ -30,11 +30,11 @@ class SevenZip:
         try:
             if archive.endswith('.7z'):
                 if sys.platform == 'darwin':
-                    extract_seven_zip = ['7za', 'x', archive]
+                    extract_seven_zip = ['7za', 'x', archive, '-o{0}'.format(destination)]
                 if 'linux' in sys.platform:
-                    extract_seven_zip = ['7za', 'x', archive]
+                    extract_seven_zip = ['7za', 'x', archive, '-o{0}'.format(destination)]
                 if sys.platform == 'win32':
-                    extract_seven_zip = ['7z', 'x', archive]
+                    extract_seven_zip = ['7z', 'x', archive, '-o{0}'.format(destination)]
                 print('Platform: {0} detected'.format(sys.platform))
                 call(extract_seven_zip)
         except:
